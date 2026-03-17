@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git ls-tree:*)",
+      "Bash(find /d/github/lunch-roullet -type f -not -path */.git/*)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-turbopack)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-turbopack --yes)",
+      "Bash(npx create-next-app@15 temp-lunch --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-turbopack --yes)",
+      "Bash(cp -r temp-lunch/* .)",
+      "Bash(cp -r temp-lunch/.* .)",
+      "Bash(cp -r d:/github/lunch-roullet/temp-lunch/src d:/github/lunch-roullet/)",
+      "Bash(cp -r d:/github/lunch-roullet/temp-lunch/public d:/github/lunch-roullet/)",
+      "Bash(npm run:*)",
+      "WebSearch",
+      "Bash(curl -L \"https://github.com/google/fonts/raw/main/ofl/blackhansans/BlackHanSans-Regular.ttf\" -o d:/github/lunch-roullet/public/fonts/BlackHanSans-Regular.ttf --max-time 30)"
+    ]
+  }
+}
