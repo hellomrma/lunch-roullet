@@ -169,8 +169,8 @@ export default function Home() {
       {/* ── Header ── */}
       <header className="pt-10 pb-4 text-center px-4">
         <p className="header-eyebrow">판교테크노밸리</p>
-        <h1 className="title-glow text-6xl md:text-7xl leading-none">판교테크노밸리 냠냠 룰렛</h1>
-        <p className="header-sub">점심 메뉴 고르기 힘들 때, 룰렛에게 맡기세요</p>
+        <h1 className="title-glow text-7xl md:text-8xl leading-none">판교Pick</h1>
+        <p className="header-sub">점심·회식 장소 고르기 힘들 때, 룰렛에게 맡기세요</p>
       </header>
 
       {/* ── 모드 토글 ── */}

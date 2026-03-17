@@ -17,8 +17,8 @@ const notoSansKR = Noto_Sans_KR({
 });
 
 export const metadata: Metadata = {
-  title: "판교테크노밸리 런치 룰렛",
-  description: "판교테크노밸리 주변 점심 메뉴를 룰렛으로 결정하세요!",
+  title: "판교Pick",
+  description: "판교테크노밸리 주변 점심·회식 장소를 랜덤으로 픽해드립니다!",
 };
 
 export default function RootLayout({

@@ -17,6 +17,10 @@ npm run lint     # ESLint 검사
 - **Tailwind CSS v4** — `@import "tailwindcss"` 문법 사용; 커스텀 토큰은 `globals.css`의 `@theme inline {}` 블록에서 정의
 - **Google Fonts (next/font)** — Black Han Sans(타이틀), Noto Sans KR(본문); CSS 변수 `--font-black-han`, `--font-noto-kr`로 주입
 
+## 프로젝트
+
+**판교Pick** — 판교테크노밸리 주변 점심·회식 장소를 룰렛으로 결정하는 웹 앱.
+
 ## 구조
 
 단일 페이지 앱으로 주요 로직이 두 파일에 집중되어 있습니다:
