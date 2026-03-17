@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Black_Han_Sans, Noto_Sans_KR } from "next/font/google";
 import { JsonLd } from "@/components/JsonLd";
 import "./globals.css";
@@ -18,6 +18,10 @@ const notoSansKR = Noto_Sans_KR({
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://pangyo-pick.vercel.app";
+
+export const viewport: Viewport = {
+  themeColor: "#080808",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -52,14 +56,6 @@ export const metadata: Metadata = {
     title: "판교Pick — 판교테크노밸리 점심·회식 룰렛",
     description:
       "판교테크노밸리 유스페이스 주변 점심 맛집 23곳·회식 장소 46곳을 룰렛으로 랜덤 추천. 네이버 맵 길찾기 바로 연결.",
-    images: [
-      {
-        url: "/og.png",
-        width: 1200,
-        height: 630,
-        alt: "판교Pick - 판교테크노밸리 점심·회식 룰렛",
-      },
-    ],
   },
 
   twitter: {
@@ -67,7 +63,6 @@ export const metadata: Metadata = {
     title: "판교Pick — 판교테크노밸리 점심·회식 룰렛",
     description:
       "판교테크노밸리 유스페이스 주변 점심 맛집 23곳·회식 장소 46곳을 룰렛으로 랜덤 추천.",
-    images: ["/og.png"],
   },
 
   robots: {

@@ -272,6 +272,39 @@ export default function Home() {
           </div>
         </div>
       </main>
+      {/* ── Footer ── */}
+      <footer className="site-footer">
+        <div className="footer-inner">
+          <div className="footer-desc">
+            <h2 className="footer-heading">판교테크노밸리 점심·회식 장소 추천</h2>
+            <p>
+              경기 성남시 분당구 대왕판교로 670 유스페이스 주변 직장인을 위한 점심 맛집 23곳,
+              회식 장소 46곳을 카테고리별로 필터하고 룰렛으로 랜덤 추천합니다.
+              한식·일식·중식·양식·아시안·분식·샐러드·패스트푸드 점심 메뉴와
+              소고기·해산물·샤브샤브·호프 등 저녁 회식 장소까지 모두 등록되어 있습니다.
+            </p>
+          </div>
+
+          <dl className="footer-faq">
+            <div className="faq-item">
+              <dt>판교테크노밸리 근처 점심 맛집은 어디인가요?</dt>
+              <dd>담솥, 일상화식, 킨파, 서호돈가스, 팔복, 동청담, 르메콩 등 23곳이 등록되어 있습니다. 룰렛을 돌려 랜덤으로 선택해 보세요.</dd>
+            </div>
+            <div className="faq-item">
+              <dt>판교테크노밸리 회식 장소 추천은?</dt>
+              <dd>됐소·황제갈비·숙성도(소/돼지), 도원참치·해도락(해산물), 수작·훠궈야(샤브샤브), 펀비어킹·육회한김스지(호프) 등 46곳을 카테고리별로 필터해 룰렛으로 선택할 수 있습니다.</dd>
+            </div>
+            <div className="faq-item">
+              <dt>유스페이스 A동 주변 점심 먹을 곳은?</dt>
+              <dd>담솥(유스페이스2 2층), 일상화식(유스페이스2 B동), 상록면(유스페이스1 지하 1층), 버거킹(유스페이스몰 1층), 이가네양꼬치(유스페이스 2층) 등이 있습니다.</dd>
+            </div>
+          </dl>
+
+          <p className="footer-copy">
+            © 2025 판교Pick · 판교테크노밸리 유스페이스 주변 맛집 룰렛
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
