@@ -102,7 +102,7 @@ canvas {
 }
 
 .spin-btn:hover:not(:disabled) {
-  background: #ff7e4d;
+  background: #a06f4d;
   box-shadow:
     0 0 36px rgba(139, 94, 60, 0.42),
     0 4px 20px rgba(139, 94, 60, 0.24);
