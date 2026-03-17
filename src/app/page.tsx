@@ -13,7 +13,7 @@ import {
 } from '@/data/restaurants';
 
 // ── Confetti ────────────────────────────────────────────────────────────────
-const CONFETTI_COLORS = ['#e0e0e0', '#c8c8c8', '#aaaaaa', '#888888', '#555555', '#333333'];
+const CONFETTI_COLORS = ['#ff6b35', '#ffaa80', '#ffd4b8', '#e8e0d0', '#c8a898', '#3d3028'];
 
 function Confetti({ active }: { active: boolean }) {
   if (!active) return null;

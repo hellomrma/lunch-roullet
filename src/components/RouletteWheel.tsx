@@ -9,9 +9,9 @@ import {
 } from 'react';
 
 export const SEGMENT_COLORS = [
-  '#e0e0e0', '#2e2e2e', '#c8c8c8', '#3d3d3d',
-  '#b8b8b8', '#484848', '#d4d4d4', '#383838',
-  '#cacaca', '#424242', '#d8d8d8', '#404040',
+  '#f0ebe0', '#3d3028', '#e8e0d0', '#4a3e36',
+  '#ddd6c8', '#564a42', '#ebe4d8', '#3a302a',
+  '#e4dcd0', '#4e4038', '#e0d8ca', '#423830',
 ];
 
 export interface WheelRef {
@@ -71,8 +71,8 @@ const RouletteWheel = forwardRef<WheelRef, Props>(({ items }, ref) => {
         ctx.fillStyle = color;
         ctx.fill();
 
-        // Subtle dark separator
-        ctx.strokeStyle = 'rgba(0,0,0,0.3)';
+        // Subtle separator
+        ctx.strokeStyle = 'rgba(255,255,255,0.55)';
         ctx.lineWidth = 2;
         ctx.stroke();
 
@@ -81,7 +81,7 @@ const RouletteWheel = forwardRef<WheelRef, Props>(({ items }, ref) => {
         ctx.moveTo(cx, cy);
         ctx.arc(cx, cy, R * 0.38, startAngle, endAngle);
         ctx.closePath();
-        ctx.fillStyle = 'rgba(255,255,255,0.07)';
+        ctx.fillStyle = 'rgba(255,255,255,0.18)';
         ctx.fill();
 
         // ── Text ──
@@ -119,16 +119,16 @@ const RouletteWheel = forwardRef<WheelRef, Props>(({ items }, ref) => {
       // ── Outer border ring ──
       ctx.beginPath();
       ctx.arc(cx, cy, R, 0, 2 * Math.PI);
-      ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+      ctx.strokeStyle = 'rgba(0,0,0,0.10)';
       ctx.lineWidth = 3;
       ctx.stroke();
 
       // ── Center hub ──
       ctx.beginPath();
       ctx.arc(cx, cy, 26, 0, 2 * Math.PI);
-      ctx.fillStyle = '#0a0a0a';
+      ctx.fillStyle = '#ffffff';
       ctx.fill();
-      ctx.strokeStyle = 'rgba(255,255,255,0.18)';
+      ctx.strokeStyle = 'rgba(0,0,0,0.10)';
       ctx.lineWidth = 2;
       ctx.stroke();
 
@@ -156,7 +156,7 @@ const RouletteWheel = forwardRef<WheelRef, Props>(({ items }, ref) => {
       ctx.shadowColor = 'rgba(255,107,53,0.9)';
       ctx.shadowBlur = 14;
       ctx.fill();
-      ctx.strokeStyle = 'rgba(255,255,255,0.55)';
+      ctx.strokeStyle = 'rgba(255,255,255,0.7)';
       ctx.lineWidth = 1.5;
       ctx.stroke();
       ctx.restore();
