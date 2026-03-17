@@ -5,21 +5,7 @@ import RouletteWheel, {
   SEGMENT_COLORS,
   WheelRef,
 } from '@/components/RouletteWheel';
-
-const DEFAULT_ITEMS = [
-  '김치찌개',
-  '된장찌개',
-  '비빔밥',
-  '삼겹살',
-  '짜장면',
-  '짬뽕',
-  '라면',
-  '순두부찌개',
-  '치킨',
-  '피자',
-  '햄버거',
-  '초밥',
-];
+import { DEFAULT_RESTAURANT_NAMES } from '@/data/restaurants';
 
 // ── Confetti ────────────────────────────────────────────────────────────────
 const CONFETTI_COLORS = ['#FF6B35', '#FFD93D', '#4ADE80', '#60A5FA', '#C084FC', '#F472B6'];
@@ -59,7 +45,7 @@ function Confetti({ active }: { active: boolean }) {
 
 // ── Main Page ────────────────────────────────────────────────────────────────
 export default function Home() {
-  const [items, setItems] = useState<string[]>(DEFAULT_ITEMS);
+  const [items, setItems] = useState<string[]>(DEFAULT_RESTAURANT_NAMES);
   const [isSpinning, setIsSpinning] = useState(false);
   const [result, setResult] = useState<string | null>(null);
   const [showConfetti, setShowConfetti] = useState(false);
