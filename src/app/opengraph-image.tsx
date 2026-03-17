@@ -69,7 +69,7 @@ export default function Image() {
             style={{
               fontSize: 22,
               letterSpacing: '0.25em',
-              color: '#ff6b35',
+              color: '#2563eb',
               fontFamily: 'Black Han Sans',
               marginBottom: 16,
             }}
@@ -93,7 +93,7 @@ export default function Image() {
           <div
             style={{
               fontSize: 38,
-              color: '#ff6b35',
+              color: '#2563eb',
               fontFamily: 'Black Han Sans',
               marginTop: 20,
             }}

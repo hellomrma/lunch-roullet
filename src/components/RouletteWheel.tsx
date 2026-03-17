@@ -135,8 +135,8 @@ const RouletteWheel = forwardRef<WheelRef, Props>(({ items }, ref) => {
       // Center dot
       ctx.beginPath();
       ctx.arc(cx, cy, 10, 0, 2 * Math.PI);
-      ctx.fillStyle = '#FF6B35';
-      ctx.shadowColor = 'rgba(255,107,53,0.8)';
+      ctx.fillStyle = '#2563eb';
+      ctx.shadowColor = 'rgba(37,99,235,0.8)';
       ctx.shadowBlur = 10;
       ctx.fill();
       ctx.shadowBlur = 0;
@@ -152,8 +152,8 @@ const RouletteWheel = forwardRef<WheelRef, Props>(({ items }, ref) => {
       ctx.lineTo(cx + pw, baseY);
       ctx.lineTo(cx, tipY);
       ctx.closePath();
-      ctx.fillStyle = '#FF6B35';
-      ctx.shadowColor = 'rgba(255,107,53,0.9)';
+      ctx.fillStyle = '#2563eb';
+      ctx.shadowColor = 'rgba(37,99,235,0.9)';
       ctx.shadowBlur = 14;
       ctx.fill();
       ctx.strokeStyle = 'rgba(255,255,255,0.7)';

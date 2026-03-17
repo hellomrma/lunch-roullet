@@ -13,7 +13,7 @@ import {
 } from '@/data/restaurants';
 
 // ── Confetti ────────────────────────────────────────────────────────────────
-const CONFETTI_COLORS = ['#ff6b35', '#ffaa80', '#ffd4b8', '#e8e0d0', '#c8a898', '#3d3028'];
+const CONFETTI_COLORS = ['#2563eb', '#6b93f5', '#b8c8ff', '#e8e0d0', '#c8a898', '#3d3028'];
 
 function Confetti({ active }: { active: boolean }) {
   if (!active) return null;
@@ -235,7 +235,7 @@ export default function Home() {
             {isSpinning ? (
               <><span className="spinner" />돌리는 중…</>
             ) : (
-              mode === 'lunch' ? '🎰 점심 돌려라!' : '🎰 회식 돌려라!'
+              mode === 'lunch' ? '🎰 점심 레츠기릿!' : '🎰 회식 레츠기릿!'
             )}
           </button>
         </div>
