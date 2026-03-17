@@ -9,9 +9,9 @@ import {
 } from 'react';
 
 export const SEGMENT_COLORS = [
-  '#FF6B35', '#FFD93D', '#4ADE80', '#60A5FA',
-  '#C084FC', '#F472B6', '#34D399', '#FB923C',
-  '#A78BFA', '#38BDF8', '#FACC15', '#F87171',
+  '#e0e0e0', '#2e2e2e', '#c8c8c8', '#3d3d3d',
+  '#b8b8b8', '#484848', '#d4d4d4', '#383838',
+  '#cacaca', '#424242', '#d8d8d8', '#404040',
 ];
 
 export interface WheelRef {
@@ -94,9 +94,15 @@ const RouletteWheel = forwardRef<WheelRef, Props>(({ items }, ref) => {
         ctx.font = `700 ${fontSize}px 'Noto Sans KR', '맑은 고딕', sans-serif`;
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
-        ctx.shadowColor = 'rgba(0,0,0,0.65)';
-        ctx.shadowBlur = 5;
-        ctx.fillStyle = '#ffffff';
+        // 밝은 세그먼트엔 어두운 텍스트, 어두운 세그먼트엔 밝은 텍스트
+        const hex = color.replace('#', '');
+        const brightness = (parseInt(hex, 16) >> 16 & 0xff) * 0.299
+          + (parseInt(hex, 16) >> 8 & 0xff) * 0.587
+          + (parseInt(hex, 16) & 0xff) * 0.114;
+        const isLight = brightness > 128;
+        ctx.shadowColor = isLight ? 'rgba(0,0,0,0.25)' : 'rgba(0,0,0,0.65)';
+        ctx.shadowBlur = 4;
+        ctx.fillStyle = isLight ? '#111111' : '#ffffff';
 
         // Truncate if too wide
         const maxW = R * 0.52;

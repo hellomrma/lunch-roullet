@@ -147,9 +147,9 @@ export default function Home() {
 
       {/* ── Header ── */}
       <header className="pt-10 pb-4 text-center px-4">
-        <p className="header-eyebrow">오늘의 점심을 결정하는 방법</p>
-        <h1 className="title-glow text-7xl md:text-8xl leading-none">런치룰렛</h1>
-        <p className="header-sub">메뉴 고르기 힘들 때, 룰렛에게 맡기세요</p>
+        <p className="header-eyebrow">판교테크노밸리</p>
+        <h1 className="title-glow text-6xl md:text-7xl leading-none">런치 룰렛</h1>
+        <p className="header-sub">점심 메뉴 고르기 힘들 때, 룰렛에게 맡기세요</p>
       </header>
 
       {/* ── Main layout ── */}

@@ -17,8 +17,8 @@ const notoSansKR = Noto_Sans_KR({
 });
 
 export const metadata: Metadata = {
-  title: "런치 룰렛 | 오늘 점심은?",
-  description: "점심 메뉴를 룰렛으로 결정하세요!",
+  title: "판교테크노밸리 런치 룰렛",
+  description: "판교테크노밸리 주변 점심 메뉴를 룰렛으로 결정하세요!",
 };
 
 export default function RootLayout({
