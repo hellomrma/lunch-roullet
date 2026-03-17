@@ -1,0 +1,350 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-black-han: var(--font-black-han);
+  --font-noto: var(--font-noto-kr);
+}
+
+:root {
+  --background: #080808;
+  --foreground: #f0ece4;
+  --accent: #ff6b35;
+  --accent-dim: rgba(255, 107, 53, 0.15);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-noto-kr), "Noto Sans KR", "맑은 고딕", sans-serif;
+  min-height: 100dvh;
+}
+
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ── Title ── */
+.title-glow {
+  font-family: var(--font-black-han), sans-serif;
+  color: #fff;
+  text-shadow:
+    0 0 8px rgba(255, 107, 53, 0.9),
+    0 0 24px rgba(255, 107, 53, 0.5),
+    0 0 60px rgba(255, 107, 53, 0.2);
+}
+
+/* ── Spin button ── */
+.spin-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2.75rem;
+  background: #ff6b35;
+  color: #fff;
+  font-family: var(--font-noto-kr), sans-serif;
+  font-size: 1.125rem;
+  font-weight: 900;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  min-width: 220px;
+  transition: background 0.15s, box-shadow 0.15s, transform 0.1s;
+  box-shadow:
+    0 0 20px rgba(255, 107, 53, 0.45),
+    0 4px 24px rgba(0, 0, 0, 0.5);
+}
+
+.spin-btn:hover:not(:disabled) {
+  background: #ff7e4d;
+  box-shadow:
+    0 0 36px rgba(255, 107, 53, 0.7),
+    0 4px 24px rgba(0, 0, 0, 0.5);
+  transform: scale(1.04);
+}
+
+.spin-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.spin-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── Result card ── */
+.result-card {
+  background: linear-gradient(135deg, #161616, #1e1e1e);
+  border: 1px solid rgba(255, 107, 53, 0.5);
+  border-radius: 1.5rem;
+  padding: 1.25rem 2rem;
+  text-align: center;
+  min-width: 220px;
+  box-shadow:
+    0 0 32px rgba(255, 107, 53, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  animation: pop-in 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ── Confetti ── */
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-40px) rotate(0deg) scaleX(1);
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(110vh) rotate(780deg) scaleX(-1);
+    opacity: 0;
+  }
+}
+
+.confetti-piece {
+  animation: confetti-fall linear forwards;
+  border-radius: 2px;
+  position: absolute;
+  top: 0;
+}
+
+/* ── Panel ── */
+.panel {
+  background: #111;
+  border: 1px solid #1f1f1f;
+  border-radius: 1.25rem;
+}
+
+/* ── Item row ── */
+.item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.75rem;
+  font-size: 0.9rem;
+  transition: background 0.12s;
+  color: #ccc;
+  background: #1a1a1a;
+}
+
+.item-row:hover {
+  background: #222;
+}
+
+.item-row.selected {
+  background: #ff6b35;
+  color: #fff;
+  font-weight: 700;
+}
+
+/* ── Custom scrollbar ── */
+.custom-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #2a2a2a transparent;
+}
+
+.custom-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 4px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: #3a3a3a;
+}
+
+/* ── Spinner (loading) ── */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 9999px;
+  animation: spin 0.7s linear infinite;
+}
+
+/* ── Wheel glow pulse ── */
+@keyframes glow-pulse {
+  0%, 100% {
+    opacity: 0.12;
+  }
+  50% {
+    opacity: 0.22;
+  }
+}
+
+.wheel-glow {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* ── Page ── */
+.page-root {
+  min-height: 100dvh;
+  background: var(--background);
+}
+
+/* ── Header text ── */
+.header-eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+  color: #ff6b35;
+}
+
+.header-sub {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: #555;
+}
+
+/* ── Wheel halo ── */
+.wheel-halo {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(255, 107, 53, 0.25) 0%, transparent 70%);
+  filter: blur(24px);
+}
+
+/* ── Result labels ── */
+.result-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+  color: #ff6b35;
+}
+
+.result-sub {
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+  color: #555;
+}
+
+/* ── Panel heading ── */
+.panel-heading {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: #888;
+}
+
+.panel-heading-count {
+  color: #ff6b35;
+}
+
+/* ── Add input ── */
+.add-input {
+  flex: 1;
+  border-radius: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: #fff;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  outline: none;
+  transition: border-color 0.12s;
+}
+
+.add-input::placeholder {
+  color: #4b5563;
+}
+
+.add-input:focus {
+  border-color: #ff6b35;
+}
+
+/* ── Add button ── */
+.add-btn {
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  background: #ff6b35;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.add-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.add-btn:hover:not(:disabled) {
+  background: #ff7e4d;
+}
+
+/* ── Item color dot ── */
+.item-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  flex-shrink: 0;
+}
+
+/* ── Remove button ── */
+.remove-btn {
+  margin-left: 0.5rem;
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #555;
+  transition: color 0.12s;
+}
+
+.remove-btn:hover:not(:disabled) {
+  color: #ef4444;
+}
+
+.remove-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* ── Warning text ── */
+.warn-text {
+  font-size: 0.75rem;
+  text-align: center;
+  margin-top: 0.75rem;
+  color: #ef4444;
+}
