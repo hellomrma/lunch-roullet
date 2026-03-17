@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import RouletteWheel, {
   SEGMENT_COLORS,
   WheelRef,
@@ -43,39 +43,107 @@ function Confetti({ active }: { active: boolean }) {
   );
 }
 
+// ── Result Modal ─────────────────────────────────────────────────────────────
+interface ResultModalProps {
+  name: string;
+  onClose: () => void;
+  onRespin: () => void;
+}
+
+function ResultModal({ name, onClose, onRespin }: ResultModalProps) {
+  const restaurant = RESTAURANTS.find((r) => r.name === name);
+  const naverMapUrl = `https://map.naver.com/v5/search/${encodeURIComponent(name)}`;
+
+  // ESC 키로 닫기
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [onClose]);
+
+  return (
+    <div className="modal-backdrop" onClick={onClose}>
+      <div className="modal-box" onClick={(e) => e.stopPropagation()}>
+        {/* 닫기 */}
+        <button type="button" className="modal-close" onClick={onClose} aria-label="닫기">
+          ×
+        </button>
+
+        {/* 내용 */}
+        <p className="result-label">오늘의 점심</p>
+        <p className="modal-name">{name}</p>
+
+        {restaurant && (
+          <>
+            <span className="modal-category">{restaurant.category}</span>
+            <p className="result-address">{restaurant.address}</p>
+            {restaurant.menu.length > 0 && (
+              <p className="modal-menu">대표 메뉴: {restaurant.menu.join(' · ')}</p>
+            )}
+          </>
+        )}
+
+        {/* 버튼 영역 */}
+        <div className="modal-actions">
+          <a
+            href={naverMapUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="naver-map-btn"
+          >
+            <NaverMapIcon />
+            네이버 맵으로 길찾기
+          </a>
+          <button type="button" className="respin-btn" onClick={onRespin}>
+            다시 돌리기
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Main Page ────────────────────────────────────────────────────────────────
 const ITEMS = DEFAULT_RESTAURANT_NAMES;
 
 export default function Home() {
   const [isSpinning, setIsSpinning] = useState(false);
   const [result, setResult] = useState<string | null>(null);
+  const [showModal, setShowModal] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
   const wheelRef = useRef<WheelRef>(null);
 
-  const resultRestaurant = result
-    ? RESTAURANTS.find((r) => r.name === result)
-    : null;
-
-  const naverMapUrl = resultRestaurant
-    ? `https://map.naver.com/v5/search/${encodeURIComponent(resultRestaurant.name + ' ' + resultRestaurant.address)}`
-    : null;
-
   const handleSpin = useCallback(async () => {
     if (isSpinning) return;
+    setShowModal(false);
     setResult(null);
     setIsSpinning(true);
     const winner = await wheelRef.current?.spin();
     setIsSpinning(false);
     if (winner) {
       setResult(winner);
+      setShowModal(true);
       setShowConfetti(true);
       setTimeout(() => setShowConfetti(false), 3200);
     }
   }, [isSpinning]);
 
+  const handleClose = useCallback(() => setShowModal(false), []);
+
+  const handleRespin = useCallback(() => {
+    setShowModal(false);
+    setTimeout(handleSpin, 150);
+  }, [handleSpin]);
+
   return (
     <div className="page-root">
       <Confetti active={showConfetti} />
+
+      {showModal && result && (
+        <ResultModal name={result} onClose={handleClose} onRespin={handleRespin} />
+      )}
 
       {/* ── Header ── */}
       <header className="pt-10 pb-4 text-center px-4">
@@ -109,27 +177,6 @@ export default function Home() {
               '🎰 돌려라 룰렛!'
             )}
           </button>
-
-          {result && !isSpinning && (
-            <div className="result-card">
-              <p className="result-label">오늘의 점심</p>
-              <p className="text-4xl font-black text-white mt-1">{result}</p>
-              {resultRestaurant && (
-                <p className="result-address">{resultRestaurant.address}</p>
-              )}
-              {naverMapUrl && (
-                <a
-                  href={naverMapUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="naver-map-btn"
-                >
-                  <NaverMapIcon />
-                  네이버 맵으로 길찾기
-                </a>
-              )}
-            </div>
-          )}
         </div>
 
         {/* ── Restaurant list (read-only) ── */}
