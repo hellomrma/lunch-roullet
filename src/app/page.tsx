@@ -305,7 +305,7 @@ export default function Home() {
           </dl>
 
           <p className="footer-copy">
-            © 2025 판교Pick · 판교테크노밸리 유스페이스 주변 맛집 룰렛
+            © 2025 <a href="https://github.com/hellomrma" target="_blank" rel="noopener noreferrer" className="footer-copy-link">hellomrma</a> · 판교Pick · 판교테크노밸리 유스페이스 주변 맛집 룰렛
           </p>
         </div>
       </footer>

@@ -511,6 +511,16 @@ canvas {
   border-top: 1px solid #ede8e0;
 }
 
+.footer-copy-link {
+  color: #b5ada6;
+  text-decoration: none;
+  transition: color 0.12s;
+}
+
+.footer-copy-link:hover {
+  color: #8b5e3c;
+}
+
 /* ── Confetti ── */
 @keyframes confetti-fall {
   0% {
