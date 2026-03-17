@@ -5,7 +5,7 @@ import RouletteWheel, {
   SEGMENT_COLORS,
   WheelRef,
 } from '@/components/RouletteWheel';
-import { DEFAULT_RESTAURANT_NAMES } from '@/data/restaurants';
+import { RESTAURANTS, DEFAULT_RESTAURANT_NAMES } from '@/data/restaurants';
 
 // ── Confetti ────────────────────────────────────────────────────────────────
 const CONFETTI_COLORS = ['#FF6B35', '#FFD93D', '#4ADE80', '#60A5FA', '#C084FC', '#F472B6'];
@@ -44,16 +44,24 @@ function Confetti({ active }: { active: boolean }) {
 }
 
 // ── Main Page ────────────────────────────────────────────────────────────────
+const ITEMS = DEFAULT_RESTAURANT_NAMES;
+
 export default function Home() {
-  const [items, setItems] = useState<string[]>(DEFAULT_RESTAURANT_NAMES);
   const [isSpinning, setIsSpinning] = useState(false);
   const [result, setResult] = useState<string | null>(null);
   const [showConfetti, setShowConfetti] = useState(false);
-  const [newItem, setNewItem] = useState('');
   const wheelRef = useRef<WheelRef>(null);
 
+  const resultRestaurant = result
+    ? RESTAURANTS.find((r) => r.name === result)
+    : null;
+
+  const naverMapUrl = resultRestaurant
+    ? `https://map.naver.com/v5/search/${encodeURIComponent(resultRestaurant.name + ' ' + resultRestaurant.address)}`
+    : null;
+
   const handleSpin = useCallback(async () => {
-    if (isSpinning || items.length < 2) return;
+    if (isSpinning) return;
     setResult(null);
     setIsSpinning(true);
     const winner = await wheelRef.current?.spin();
@@ -63,19 +71,7 @@ export default function Home() {
       setShowConfetti(true);
       setTimeout(() => setShowConfetti(false), 3200);
     }
-  }, [isSpinning, items.length]);
-
-  const addItem = useCallback(() => {
-    const trimmed = newItem.trim();
-    if (trimmed && !items.includes(trimmed) && items.length < 20) {
-      setItems((prev) => [...prev, trimmed]);
-      setNewItem('');
-    }
-  }, [newItem, items]);
-
-  const removeItem = useCallback((idx: number) => {
-    setItems((prev) => prev.filter((_, i) => i !== idx));
-  }, []);
+  }, [isSpinning]);
 
   return (
     <div className="page-root">
@@ -95,14 +91,14 @@ export default function Home() {
         <div className="flex flex-col items-center gap-5 shrink-0 w-full lg:w-auto">
           <div className="relative flex items-center justify-center">
             <div className="wheel-halo wheel-glow" />
-            <RouletteWheel ref={wheelRef} items={items} />
+            <RouletteWheel ref={wheelRef} items={ITEMS} />
           </div>
 
           <button
             type="button"
             className="spin-btn"
             onClick={handleSpin}
-            disabled={isSpinning || items.length < 2}
+            disabled={isSpinning}
           >
             {isSpinning ? (
               <>
@@ -118,71 +114,68 @@ export default function Home() {
             <div className="result-card">
               <p className="result-label">오늘의 점심</p>
               <p className="text-4xl font-black text-white mt-1">{result}</p>
-              <p className="result-sub">맛있게 드세요! 🍽️</p>
+              {resultRestaurant && (
+                <p className="result-address">{resultRestaurant.address}</p>
+              )}
+              {naverMapUrl && (
+                <a
+                  href={naverMapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="naver-map-btn"
+                >
+                  <NaverMapIcon />
+                  네이버 맵으로 길찾기
+                </a>
+              )}
             </div>
           )}
         </div>
 
-        {/* ── Item list panel ── */}
+        {/* ── Restaurant list (read-only) ── */}
         <div className="w-full lg:w-72 lg:mt-6">
           <div className="panel p-5">
             <h2 className="panel-heading">
-              메뉴 목록{' '}
-              <span className="panel-heading-count">({items.length}/20)</span>
+              주변 음식점{' '}
+              <span className="panel-heading-count">({ITEMS.length})</span>
             </h2>
 
-            <div className="flex gap-2 mb-4">
-              <input
-                type="text"
-                value={newItem}
-                onChange={(e) => setNewItem(e.target.value)}
-                onKeyDown={(e) => e.key === 'Enter' && addItem()}
-                placeholder="메뉴 추가…"
-                maxLength={12}
-                className="add-input"
-              />
-              <button
-                type="button"
-                onClick={addItem}
-                disabled={!newItem.trim() || items.length >= 20}
-                className="add-btn"
-              >
-                +
-              </button>
-            </div>
-
-            <div className="space-y-1.5 max-h-96 overflow-y-auto custom-scroll">
-              {items.map((item, i) => (
-                <div
-                  key={`${item}-${i}`}
-                  className={`item-row ${result === item && !isSpinning ? 'selected' : ''}`}
-                >
-                  <div className="flex items-center gap-2.5 min-w-0">
-                    <span
-                      className="item-dot"
-                      style={{ backgroundColor: SEGMENT_COLORS[i % SEGMENT_COLORS.length] }}
-                    />
-                    <span className="truncate">{item}</span>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => removeItem(i)}
-                    disabled={isSpinning}
-                    className="remove-btn"
-                    aria-label={`${item} 삭제`}
+            <div className="space-y-1.5 max-h-120 overflow-y-auto custom-scroll">
+              {ITEMS.map((name, i) => {
+                const restaurant = RESTAURANTS.find((r) => r.name === name);
+                return (
+                  <div
+                    key={name}
+                    className={`item-row ${result === name && !isSpinning ? 'selected' : ''}`}
                   >
-                    ×
-                  </button>
-                </div>
-              ))}
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <span
+                        className="item-dot"
+                        style={{ backgroundColor: SEGMENT_COLORS[i % SEGMENT_COLORS.length] }}
+                      />
+                      <span className="truncate">{name}</span>
+                    </div>
+                    {restaurant && (
+                      <span className="category-badge">{restaurant.category}</span>
+                    )}
+                  </div>
+                );
+              })}
             </div>
-
-            {items.length < 2 && (
-              <p className="warn-text">최소 2개의 메뉴가 필요합니다</p>
-            )}
           </div>
         </div>
       </main>
     </div>
+  );
+}
+
+function NaverMapIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path
+        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+        fill="currentColor"
+      />
+    </svg>
   );
 }
