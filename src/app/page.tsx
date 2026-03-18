@@ -181,7 +181,7 @@ export default function Home() {
             className={`mode-btn ${mode === 'lunch' ? 'active' : ''}`}
             onClick={() => handleModeChange('lunch')}
           >
-            점심 런치
+            점심
           </button>
           <button
             type="button"
