@@ -12,7 +12,9 @@
       "Bash(cp -r d:/github/lunch-roullet/temp-lunch/public d:/github/lunch-roullet/)",
       "Bash(npm run:*)",
       "WebSearch",
-      "Bash(curl -L \"https://github.com/google/fonts/raw/main/ofl/blackhansans/BlackHanSans-Regular.ttf\" -o d:/github/lunch-roullet/public/fonts/BlackHanSans-Regular.ttf --max-time 30)"
+      "Bash(curl -L \"https://github.com/google/fonts/raw/main/ofl/blackhansans/BlackHanSans-Regular.ttf\" -o d:/github/lunch-roullet/public/fonts/BlackHanSans-Regular.ttf --max-time 30)",
+      "Bash(echo:*)",
+      "Read(//c/Users/hello/**)"
     ]
   }
 }
