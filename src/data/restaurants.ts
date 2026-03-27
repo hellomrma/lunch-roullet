@@ -45,9 +45,10 @@ export const LUNCH_RESTAURANTS: Restaurant[] = [
   { name: '평가옥',      category: '한식',    address: '삼평동 인근',                          menu: ['평양냉면', '온면'] },
   { name: '봉피양',      category: '한식',    address: '삼평동 681 인근',                      menu: ['평양냉면', '수육'] },
   { name: '재크와콩나물',category: '한식',    address: '삼평동 인근',                          menu: ['콩나물국밥', '이모카세'] },
-  { name: '여의나룻',    category: '한식',    address: '분당내곡로 131 인근',                  menu: ['한우탕', '한우육개장'] },
   { name: '조재벌식당',  category: '한식',    address: '삼평동 인근',                          menu: ['삼겹살', '고기구이'] },
   { name: '토속상황삼계탕', category: '한식', address: '대왕판교로 670 인근',                  menu: ['삼계탕', '토종닭백숙'] },
+  { name: '진진반상',    category: '한식',    address: '대왕판교로 660 유스페이스1 A동 지하 1층', menu: ['제육볶음 정식', '된장찌개 정식', '비빔밥'] },
+  { name: '춘업순댓국',  category: '한식',    address: '판교역로 231 에이치스퀘어 에스동 지하 1층', menu: ['순댓국', '얼큰순댓국', '소고기순댓국'] },
   // 일식
   { name: '일상화식',    category: '일식',    address: '대왕판교로 670 유스페이스2 B동 226호', menu: ['카이센동', '일본 가정식 정식'] },
   { name: '상록면',      category: '일식',    address: '대왕판교로 670 유스페이스1 지하 1층',  menu: ['고등어소바', '모리소바'] },
@@ -58,16 +59,10 @@ export const LUNCH_RESTAURANTS: Restaurant[] = [
   { name: '소바니우동',  category: '일식',    address: '삼평동 인근',                          menu: ['냉우동', '온우동'] },
   { name: '이가네양꼬치',category: '일식',    address: '대왕판교로 670 유스페이스 2층',         menu: ['양등심꼬치', '양왕갈비'] },
   // 중식
-  { name: '팔복',        category: '중식',    address: '판교역로241번길 22 판교엠타워 1층',    menu: ['중식 코스', '볶음류'] },
   { name: '동청담',      category: '중식',    address: '대왕판교로606번길 45',                 menu: ['유니짜장', '옛날짬뽕'] },
+  { name: '락앤웍',      category: '중식',    address: '판교역로 231 에이치스퀘어 에스동 지하 1층', menu: ['짜장면', '짬뽕', '볶음밥'] },
   // 아시안
   { name: '르메콩',      category: '아시안',  address: '대왕판교로 670 유스페이스 인근',        menu: ['소고기쌀국수', '나시고렝'] },
-  // 양식
-  { name: '파파라구',    category: '양식',    address: '백현동 카페거리 인근',                 menu: ['라자냐', '써니피자'] },
-  // 샐러드
-  { name: '샐러드카페 파라', category: '샐러드', address: '판교역로192번길 16',               menu: ['훈제오리 파스타 샐러드'] },
-  // 패스트푸드
-  { name: '버거킹',      category: '패스트푸드', address: '대왕판교로 660 유스페이스몰 1층 111~112호', menu: ['와퍼', '치킨버거'] },
   // 분식
   { name: '해미옥',      category: '분식',    address: '대왕판교로606번길 41',                 menu: ['해물칼국수'] },
 ];
@@ -91,6 +86,8 @@ export const DINNER_RESTAURANTS: Restaurant[] = [
   { name: '감성쪽갈비',   category: '소고기/돼지고기', naverUrl: 'https://naver.me/xpPaDsUL' },
   { name: '판교집',       category: '소고기/돼지고기', naverUrl: 'https://naver.me/FFviHPuJ', menu: ['냉삼'] },
   { name: '마왕족발',     category: '소고기/돼지고기', naverUrl: 'https://naver.me/xkxqS4P4' },
+  { name: '순우가',       category: '소고기/돼지고기', address: '대왕판교로645번길 36 NS별관 지하 1층', menu: ['한우 육사시미', '한우 육회', '갈비탕'] },
+  { name: '한와담',       category: '소고기/돼지고기', address: '백현동 알파돔타워 1층',               menu: ['숙성채끝등심', '숙성눈꽃등심'] },
 
   // 양고기/닭고기
   { name: '이가네양갈비', category: '양고기/닭고기', naverUrl: 'https://naver.me/54VkJJmo' },
@@ -108,6 +105,8 @@ export const DINNER_RESTAURANTS: Restaurant[] = [
   { name: '문막집',       category: '해산물', naverUrl: 'https://naver.me/G14On6tL' },
   { name: '전설의 골뱅이',category: '해산물', naverUrl: 'https://naver.me/GnGCvJ70' },
   { name: '우나기강',     category: '해산물', naverUrl: 'https://naver.me/FxFKfcwn' },
+  { name: '일품참치',     category: '해산물', address: '판교역로192번길 14-2 2층',                  menu: ['참치 무한리필', '오도로', '가마도로'] },
+  { name: '이춘복참치',   category: '해산물', address: '동판교로177번길 25 아브뉴프랑 판교 2층',    menu: ['참치 일반정식', '참치 특정식'] },
 
   // 샤브샤브/훠궈
   { name: '제이스팟',     category: '샤브샤브/훠궈', naverUrl: 'https://naver.me/FU39uWvv' },
@@ -123,6 +122,8 @@ export const DINNER_RESTAURANTS: Restaurant[] = [
   { name: '육회한김스지', category: '호프/주점', naverUrl: 'https://naver.me/I5Fca7ve' },
   { name: '짝태앤노가리', category: '호프/주점', naverUrl: 'https://naver.me/xVlD3QkX' },
   { name: '사쿠라테이엔', category: '호프/주점', naverUrl: 'https://naver.me/xGOyiDWf' },
+  { name: '야키토리잔잔', category: '호프/주점', address: '판교역로 178 서건타워 1층 101호',        menu: ['야키토리', '모츠야키', '하이볼'] },
+  { name: '업투유',       category: '호프/주점', address: '삼평동 인근',                           menu: ['요리주점 안주', '사케', '하이볼'] },
 
   // 뷔페
   { name: '마키노차야',   category: '뷔페', naverUrl: 'https://naver.me/54VkJJmo' },
@@ -136,6 +137,8 @@ export const DINNER_RESTAURANTS: Restaurant[] = [
   { name: '옥된장',       category: '기타', naverUrl: 'https://naver.me/5P2CvMdx' },
   { name: '매드포갈릭',   category: '기타', naverUrl: 'https://naver.me/5k7fZeOr' },
   { name: '빈티지1988',   category: '기타', naverUrl: 'https://naver.me/G8s9j5n3' },
+  { name: '라디오베이',   category: '기타', address: '판교역로192번길 12 판교미래에셋센터 2층',   menu: ['콥샐러드', '페퍼로니 피자', '파스타'] },
+  { name: '락앤웍',       category: '기타', address: '판교역로 231 에이치스퀘어 에스동 지하 1층', menu: ['코스요리', '짜장면'] },
 ];
 
 export const DINNER_RESTAURANT_NAMES = DINNER_RESTAURANTS.map((r) => r.name);
